@@ -7,5 +7,7 @@
         }
     ],
     "description": "API server for starit project",
-    "require": {}
+    "require": {
+        "csanquer/pdo-service-provider": "~1.1dev"
+    }
 }
