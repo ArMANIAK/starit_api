@@ -1,0 +1,11 @@
+{
+    "name": "starit/api",
+    "authors": [
+        {
+            "name": "Mikhail Aloshyn",
+            "email": "reklama.alatyr@gmail.com"
+        }
+    ],
+    "description": "API server for starit project",
+    "require": {}
+}
