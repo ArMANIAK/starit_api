@@ -1,7 +1,7 @@
 <?php
 // namespace classes\api;
 
-require_once dirname(__FILE__, 2) . "\\Request.php";
+require_once dirname(__FILE__, 2) . "\/Request.php";
 
     abstract class Api 
     {
