@@ -11,6 +11,8 @@ require_once dirname(__FILE__, 2) . "/Request.php";
             
             $this->db = DbConnect::connect();
 
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
             if ($request->method === 'GET')
             {
                 if ($request->arguments === NULL)
