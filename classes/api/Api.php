@@ -13,6 +13,7 @@ require_once dirname(__FILE__, 2) . "/Request.php";
 
             header('Access-Control-Allow-Origin: *');
             header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
+            header('Access-Control-Request-Headers: Content-Type');
             if ($request->method === 'GET')
             {
                 if ($request->arguments === NULL)
