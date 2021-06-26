@@ -11,9 +11,6 @@ require_once dirname(__FILE__, 2) . "/Request.php";
             
             $this->db = DbConnect::connect();
 
-            header('Access-Control-Allow-Origin: *');
-            header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
-            header('Access-Control-Request-Headers: Content-Type');
             if ($request->method === 'GET')
             {
                 if ($request->arguments === NULL)
@@ -37,6 +34,9 @@ require_once dirname(__FILE__, 2) . "/Request.php";
 
         public function getList() 
         { 
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
+            header('Access-Control-Request-Headers: Content-Type');
             header('Content-Type: application/json');
             $queryResult = $this->db->query("SELECT * FROM {$this->relatedTable}");
             $result = $queryResult ? $queryResult->fetchAll() 
@@ -48,6 +48,9 @@ require_once dirname(__FILE__, 2) . "/Request.php";
 
         public function getOne($params) 
         { 
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
+            header('Access-Control-Request-Headers: Content-Type');
             header('Content-Type: application/json');
             // echo '<p>Querying ' . $this->relatedTable . '</p>';
             $queryResult = $this->db->query("SELECT * FROM {$this->relatedTable} WHERE id=$params[0]");
@@ -60,6 +63,9 @@ require_once dirname(__FILE__, 2) . "/Request.php";
 
         public function insert($arguments, $post) 
         {
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
+            header('Access-Control-Request-Headers: Content-Type');
             header('Content-Type: application/json');
             if (empty($arguments))
             {
