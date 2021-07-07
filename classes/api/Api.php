@@ -72,11 +72,16 @@ require_once dirname(__FILE__, 2) . "/Request.php";
                 $setParams = '';
                 foreach ($post as $key => $value)
                 {
-                    $setParams .= "$key = $value";
+                    if (preg_match('/.*date.*/', $key))
+                    {
+                        continue;
+                    }
+                    $setParams .= "$key = $value, ";
                 }
-                $queryString = "UPDATE {$this->relatedTable} SET {$setParams} WHERE id={$arguments[0]}";
-                echo $queryString;
-                $queryResult = $this->db->query($queryString);
+                $queryString = substr($setParams, 0, strlen($setParams) - 2);
+                $query = "UPDATE {$this->relatedTable} SET {$queryString} WHERE id={$arguments[0]}";
+                // echo $query;
+                $queryResult = $this->db->query($query);
             }
             $result = $queryResult ? $queryResult->fetch(PDO::FETCH_ASSOC) 
                 : ($queryResult === FALSE 
