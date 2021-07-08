@@ -62,7 +62,7 @@ require_once dirname(__FILE__, 2) . "/Request.php";
             if (empty($arguments))
             {
                 $keys = implode(", ", array_filter(array_keys($post), fn($index) => $index !== 'id'));
-                $values = implode(", ", array_filter($post, fn($index) => $index !== 'id'));
+                $values = trim(implode(", ", array_filter($post, fn($index) => $index !== 'id')), ', ');
                 $queryString = "INSERT INTO {$this->relatedTable} ({$keys}) VALUES ({$values})";
                 echo $queryString;
                 $queryResult = $this->db->query($queryString);
@@ -78,9 +78,9 @@ require_once dirname(__FILE__, 2) . "/Request.php";
                     }
                     $setParams .= "$key = $value, ";
                 }
-                $queryString = substr($setParams, 0, strlen($setParams) - 2);
+                $queryString = trim($setParams, ', ');
                 $query = "UPDATE {$this->relatedTable} SET {$queryString} WHERE id={$arguments[0]}";
-                // echo $query;
+                echo $query;
                 $queryResult = $this->db->query($query);
             }
             $result = $queryResult ? $queryResult->fetch(PDO::FETCH_ASSOC) 
