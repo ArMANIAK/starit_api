@@ -62,7 +62,7 @@ require_once dirname(__FILE__, 2) . "/Request.php";
             if (empty($arguments))
             {
                 $keys = "\"" . implode("\", \"", array_filter(array_keys($post), fn($index) => $index !== 'id')) . "\"";
-                $values = "\"" . trim(implode("\", \"", array_filter($post, fn($index) => $index !== 'id')), ', ') . "\"";
+                $values = "'" . trim(implode("', '", array_filter($post, fn($index) => $index !== 'id')), ', ') . "'";
                 $queryString = "INSERT INTO {$this->relatedTable} ({$keys}) VALUES ({$values})";
                 echo $queryString;
                 $queryResult = $this->db->query($queryString);
