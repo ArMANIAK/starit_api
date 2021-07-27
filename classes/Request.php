@@ -21,7 +21,11 @@
             if (strlen($argString) > 5)
             {
                 $argArray = explode('/', substr(rtrim($argString, "/"), 5));
-                $this->resource = ucfirst($argArray[0]);
+                $resourceParts = explode('_', $argArray[0]);
+                foreach ($resourceParts as &$part) {
+                    $part = ucfirst($part);
+                }
+                $this->resource = implode('', $resourceParts);
                 if (count($argArray) > 1)
                 {
                     $this->arguments = array_slice($argArray, 1);
